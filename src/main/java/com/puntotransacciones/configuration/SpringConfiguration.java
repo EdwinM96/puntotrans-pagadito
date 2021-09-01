@@ -16,9 +16,8 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 @Configuration
 @EnableWebMvc
 @EnableScheduling
-@ComponentScan(basePackages = {"com.puntotransacciones.controller"})
+@ComponentScan(basePackages = {"com.puntotransacciones.controller", "com.puntotransacciones"})
 public class SpringConfiguration implements WebMvcConfigurer {
-    
 
     @Bean
     public ViewResolver viewResolver() {
@@ -28,4 +27,10 @@ public class SpringConfiguration implements WebMvcConfigurer {
         return viewResolver;
     }
 
+    @Override
+    public void addResourceHandlers(ResourceHandlerRegistry registry) {
+        registry.addResourceHandler("/resources/**").addResourceLocations("/WEB-INF/resources/");
+        registry.addResourceHandler("swagger-ui.html").addResourceLocations("classpath:/META-INF/resources/");
+        registry.addResourceHandler("/webjars/**").addResourceLocations("classpath:/META-INF/resources/webjars/");
+    }
 }
