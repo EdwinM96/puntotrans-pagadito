@@ -6,11 +6,14 @@
 package com.puntotransacciones.controller;
 
 import com.gargoylesoftware.htmlunit.WebClient;
+import com.gargoylesoftware.htmlunit.WebRequest;
 import com.gargoylesoftware.htmlunit.html.HtmlPage;
+import java.net.URL;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.Optional;
 import javax.script.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -40,10 +43,13 @@ public class FingerprintController {
         
         Invocable inv = (Invocable) engine;
         Object object = inv.invokeFunction("cybs_dfprofiler", "pagadito", "SANDBOX");*/
-        
+        //URI uri = URI.parseURI("https://fingerprint-punto.herokuapp.com/home").get();
+        //URL url = new URL("http://localhost:8080/puntotrans-pagadito/home");
+        WebRequest webRequest = new WebRequest(new URL("http://localhost:8080/puntotrans-pagadito/home"));
         WebClient client = new WebClient();
-        HtmlPage page = client.getPage("https://www.google.com/");
-        String bodyContent = page.getBody().asNormalizedText();
+        HtmlPage page = client.getPage("http://localhost:8080/puntotrans-pagadito/home");
+        System.out.println("Page has being requested.");
+        String bodyContent = page.getBody().asText();
         System.out.println(bodyContent);
         return bodyContent;
     }
