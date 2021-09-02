@@ -45,9 +45,9 @@ public class FingerprintController {
         Object object = inv.invokeFunction("cybs_dfprofiler", "pagadito", "SANDBOX");*/
         //URI uri = URI.parseURI("https://fingerprint-punto.herokuapp.com/home").get();
         //URL url = new URL("http://localhost:8080/puntotrans-pagadito/home");
-        WebRequest webRequest = new WebRequest(new URL("http://localhost:8080/puntotrans-pagadito/home"));
+        //WebRequest webRequest = new WebRequest(new URL("https://fingerprint-punto.herokuapp.com/home"));
         WebClient client = new WebClient();
-        HtmlPage page = client.getPage("http://localhost:8080/puntotrans-pagadito/home");
+        HtmlPage page = client.getPage("https://fingerprint-punto.herokuapp.com/home");
         System.out.println("Page has being requested.");
         String bodyContent = page.getBody().asText();
         System.out.println(bodyContent);
